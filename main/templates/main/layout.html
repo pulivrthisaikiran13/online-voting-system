@@ -1,0 +1,418 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CHALAPATHI COLLEGE | {{ title }}</title>
+
+    <link rel="icon" type="image/x-icon" href="{% static 'sb_admin/img/favicon.ico' %}" />
+    <meta property="og:image" content="{% static 'chalapathi.jpg' %}" />
+    <meta name="description" content="A capstone project for CHALAPATHI SSG ELECTION made by Fermilan, Christian Jhegg & Rivero, Winonna Jane">
+
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link href="{% static 'sb_admin/css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- Datatables -->
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.css"/>
+
+
+
+</head>
+
+<body id="page-top">
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav sidebar bg-primary sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+            <div class="sidebar-brand-icon">
+                <img width="40px" src="data:image/jpeg;base64,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">
+            </div>
+            <div class="sidebar-brand-text mx-2">Chalapathi</div>
+        </a>
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Homepage
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span></a>
+        </li>
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            MAIN BRANCH
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'mainssg' %}">
+                <i class="fa-solid fa-people-line"></i>
+                <span>Main SSG</span></a>
+        </li>
+
+
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            LEGISLATIVE BRANCH
+        </div>
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        {% if request.user.department == 'CEIT' or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'ceitballot' %}">
+                <i class="fa-solid fa-helmet-safety"></i>
+                <span>CSE Department</span></a>
+        </li>
+        {% endif %}
+        {% if request.user.department == 'CTE' or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cteballot' %}">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>IT Department</span></a>
+        </li>
+        {% endif %}
+        {% if request.user.department == 'CAS' or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'casballot' %}">
+                <i class="fa-solid fa-atom"></i>
+                <span>MECH Department</span></a>
+        </li>
+        {% endif %}
+        {% if request.user.department == 'COT' or request.user.is_superuser %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'cotballot' %}">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>EEE Department</span></a>
+        </li>
+        {% endif %}
+        {% if not request.user.is_superuser %}
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            Voting Receipt
+        </div>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'receipt' %}">
+                <i class="fa-solid fa-receipt"></i>
+                <span>Receipt</span></a>
+        </li>
+        {% endif %}
+        <!-- Nav Item - Pages Collapse Menu -->
+        <!-- Divider -->
+        {% if request.user.is_superuser %}
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Admin Pannel
+        </div>
+
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <i class="fa fa-dashboard fa-fw"></i>
+                <span>Dashboard</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'voters' %}">
+                <i class="fa-solid fa-people-group"></i>
+                <span>Voters</span></a>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'electionschedule' %}">
+                <i class="fa-regular fa-calendar-days"></i>
+                <span>Election Schedule</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <i class="fa-solid fa-people-line"></i>
+                <span>Main SSG</span>
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'mainssgcandidates' %}">Main SSG Candidates</a>
+                    <a class="collapse-item" href="{% url 'mainssgtally' %}">Main SSG Tally</a>
+                    <a class="collapse-item" href="{% url 'mainssgresult' %}">Main SSG Result</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <i class="fa-solid fa-helmet-safety"></i>
+                <span>CSE Department</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'ceitcandidates' %}">CSE Candidates</a>
+                    <a class="collapse-item" href="{% url 'ceittally' %}">CSE Tally</a>
+                    <a class="collapse-item" href="{% url 'ceitresult' %}">CSE Result</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <i class="fa-solid fa-chalkboard-user"></i>
+                <span>IT Department</span>
+            </a>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'ctecandidates' %}">IT Candidates</a>
+                    <a class="collapse-item" href="{% url 'ctetally' %}">IT Tally</a>
+                    <a class="collapse-item" href="{% url 'cteresult' %}">IT Result</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                <i class="fa-solid fa-atom"></i>
+                <span>MECH Department</span>
+            </a>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'cascandidates' %}">MECH Candidates</a>
+                    <a class="collapse-item" href="{% url 'castally' %}">MECH Tally</a>
+                    <a class="collapse-item" href="{% url 'casresult' %}">MECH Result</a>
+                </div>
+            </div>
+        </li>
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <span>EEE Department</span>
+            </a>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
+                <div class="bg-light py-2 collapse-inner rounded" style="color:white;">
+                    <a class="collapse-item" href="{% url 'cotcandidates' %}">EEE Candidates</a>
+                    <a class="collapse-item" href="{% url 'cottally' %}">EEE Tally</a>
+                    <a class="collapse-item" href="{% url 'cotresult' %}">EEE Result</a>
+                </div>
+            </div>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'settings' %}">
+                <i class="fa-solid fa-gears"></i>
+                <span>Settings</span></a>
+        </li>
+        {% endif %}
+
+    <!-- <hr class="sidebar-divider d-none d-md-block">
+
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div> -->
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div style="background-color: #dddd;" id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light mb-4 bg-white topbar static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Search -->
+
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{% if request.user.is_superuser %} {{ request.user }} {% else %} {{ request.user.first_name }} {{ request.user.last_name }} {% endif %}</span>
+                            <img class="img-profile rounded-circle"
+                                src="{% static 'sb_admin/img/user.png' %}">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{% url 'profile' request.user.id %}">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- /.container-fluid -->
+            <section class="page-content">
+            {% block body %}
+            {% endblock body %}
+            </section>
+        </div>
+
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <b><span>Copyright &copy; <a class="primary" href=""> CHALAPATHI COLLEGE </a> | All Rights Reserved 2024</span></b>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="{% static 'sb_admin/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'sb_admin/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'sb_admin/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'sb_admin/js/sb-admin-2.min.js' %}"></script>
+    <script src="{% static 'sweetify/sweetify.js' %}"></script>
+    {% load sweetify %}
+    {% sweetify %}
+
+    <!-- Datatables -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.12.1/b-2.2.3/b-html5-2.2.3/b-print-2.2.3/datatables.min.js"></script>
+    
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        $(".tally-table").DataTable({
+            responsive: true,
+            pading: true,
+            pageLength: 10,
+            lengthChange: true,
+            autoWidth: true,
+            searching: true,
+            bInfo: true,
+            bSort: true,
+            dom: 'Bfrtipl',
+            buttons: [
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    className: 'btn btn-success',
+                    titleAttr: 'Print',
+                },
+                {
+                    extend: 'pdf',
+                    text: 'PDF',
+                    className: 'ml-2 btn btn-secondary',
+                    titleAttr: 'PDF',
+                },
+            ]
+        });
+        $(".receipt_table").DataTable({
+            bPaginate: false,
+            responsive: true,
+            pading: true,
+            pageLength: 10,
+            lengthChange: true,
+            autoWidth: true,
+            searching: false,
+            bInfo: false,
+            bSort: false,
+            dom: 'Bfrtipl',
+            buttons: [
+                {
+                    extend: 'print',
+                    text: 'Print',
+                    className: 'btn btn-success',
+                    titleAttr: 'Print',
+                },
+                {
+                    extend: 'pdf',
+                    text: 'PDF',
+                    className: 'ml-2 btn btn-secondary',
+                    titleAttr: 'PDF',
+                },
+            ]
+        });
+    </script>
+
+    
+</body>
+
+</html>
